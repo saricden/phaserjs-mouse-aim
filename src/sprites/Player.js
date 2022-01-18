@@ -11,6 +11,13 @@ class Player extends Container {
     this.scene.add.existing(this);
     this.scene.physics.world.enable(this);
 
+    // Init raycasting
+    const bulletRaycast = this.scene.raycasterPlugin.createRaycaster();
+    bulletRaycast.mapGameObjects(this.scene.ground, true, {
+      collisionTiles: [1, 2, 3]
+    });
+    this.bulletRay = bulletRaycast.createRay();
+
     // Add his body
     this.legsTorso = this.scene.add.sprite(0, 0, 'player-body');
 
@@ -70,6 +77,73 @@ class Player extends Container {
 
         // Same as above but without the weird broken angle to account for ¯\_(ツ)_/¯
         this.head.setRotation((this.aimAngle + Math.PI / 2) / 2);
+      }
+    });
+
+    this.bulletGfx = this.scene.add.graphics();
+    
+    // Hook into pointerdown (click) event
+    this.scene.input.on('pointerdown', ({}) => {
+      this.leftArm.play('gun-arm-shoot');
+
+      // Create a new vector and apply the left arm's angle
+      const vector = new pMath.Vector2();
+      vector.setToPolar(this.leftArm.rotation + Math.PI / 2, 35);
+
+      // Set the bullet ray so it starts at the end of the vector, and has the same angle as the left arm
+      this.bulletRay.setOrigin(this.x + vector.x, this.y + vector.y - 28);
+      this.bulletRay.setAngle(this.leftArm.rotation + Math.PI / 2);
+
+      // Cast the ray, and get any intersection
+      const intersection = this.bulletRay.cast();
+
+      // Start the line's end x/y at an arbitrary point far enough away that it's off-screen
+      let endX = vector.x * 300;
+      let endY = vector.y * 300;
+
+      // If there's an intersection it means we hit something
+      if (intersection) {
+        // Reassign the end x/y to the intersection's position
+        endX = intersection.x;
+        endY = intersection.y;
+
+        if (intersection.object) {
+          // intersection.object contains the sprite or tile that you hit
+          // Use this to apply damage, break things, etc.
+          
+          // Add a spark to where the ray intersects the tile
+          const spark = this.scene.add.sprite(intersection.x, intersection.y, 'spark');
+          // Set it's depth to 10 so it renders above everything else
+          spark.setDepth(10);
+          // Give it a random angle so it looks a little different on each hit
+          spark.setAngle(pMath.Between(0, 360));
+          // Play it's animation, and destroy itself when complete to free up memory
+          spark.play('spark-spark');
+          spark.on('animationcomplete', () => {
+            spark.destroy();
+          });
+        }
+      }
+
+      // Set the bullet line's width, colour, and opacity
+      this.bulletGfx.lineStyle(2, 0xFBF236, 1);
+      // Draw the line from the end of the gun, to the end x/y we made above
+      this.bulletGfx.lineBetween(this.x + vector.x, this.y + vector.y - 28, endX, endY);
+
+      // Set an event 50 milliseconds in the future that clears the line graphic
+      this.scene.time.addEvent({
+        delay: 50,
+        callback: () => {
+          this.bulletGfx.clear();
+        }
+      })
+
+    });
+
+    // Animation reset (clear muzzle flare)
+    this.leftArm.on('animationcomplete', ({key}) => {
+      if (key === 'gun-arm-shoot') {
+        this.leftArm.play('gun-arm-idle');
       }
     });
 

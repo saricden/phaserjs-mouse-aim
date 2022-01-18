@@ -9,6 +9,8 @@ import playerArm from '../assets/player-arm.png';
 import playerHead from '../assets/player-head.png';
 import map from '../assets/map.json';
 import tiles from '../assets/tiles-ex.png';
+import sparkPNG from '../assets/spark.png';
+import sparkJSON from '../assets/spark.json';
 
 class BootScene extends Scene {
   constructor() {
@@ -23,12 +25,14 @@ class BootScene extends Scene {
     this.load.image('player-head', playerHead);
     this.load.tilemapTiledJSON('map', map);
     this.load.image('tiles', tiles);
+    this.load.aseprite('spark', sparkPNG, sparkJSON);
   }
 
   create() {
     // Create our animations
     this.anims.createFromAseprite('player-body');
     this.anims.createFromAseprite('player-gun-arm');
+    this.anims.createFromAseprite('spark');
 
     this.scene.start('scene-game');
   }
