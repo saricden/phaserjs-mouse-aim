@@ -7,6 +7,13 @@ const config = {
     parent: 'game',
     width: 1600,
     height: 840,
+    // Enable and configure arcade physics engine
+    physics: {
+        default: 'arcade',
+        arcade: {
+            gravity: { y: 500 }
+        }
+    },
     scene: [
         BootScene,
         GameScene
