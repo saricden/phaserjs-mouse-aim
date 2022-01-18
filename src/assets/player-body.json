@@ -1,0 +1,51 @@
+{ "frames": {
+   "0": {
+    "frame": { "x": 2, "y": 2, "w": 31, "h": 59 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 4, "y": 0, "w": 27, "h": 55 },
+    "sourceSize": { "w": 32, "h": 55 },
+    "duration": 100
+   },
+   "1": {
+    "frame": { "x": 35, "y": 2, "w": 35, "h": 59 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 1, "y": 0, "w": 31, "h": 55 },
+    "sourceSize": { "w": 32, "h": 55 },
+    "duration": 100
+   },
+   "2": {
+    "frame": { "x": 2, "y": 2, "w": 31, "h": 59 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 4, "y": 0, "w": 27, "h": 55 },
+    "sourceSize": { "w": 32, "h": 55 },
+    "duration": 100
+   },
+   "3": {
+    "frame": { "x": 72, "y": 2, "w": 36, "h": 59 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 55 },
+    "sourceSize": { "w": 32, "h": 55 },
+    "duration": 100
+   }
+ },
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.2.29-x64",
+  "image": "player-body.png",
+  "format": "RGBA8888",
+  "size": { "w": 108, "h": 61 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "layers": [
+   { "name": "Layer 2", "opacity": 255, "blendMode": "normal" },
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}
