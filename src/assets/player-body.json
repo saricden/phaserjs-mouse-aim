@@ -1,6 +1,6 @@
 { "frames": {
    "0": {
-    "frame": { "x": 2, "y": 2, "w": 31, "h": 59 },
+    "frame": { "x": 0, "y": 0, "w": 27, "h": 55 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 4, "y": 0, "w": 27, "h": 55 },
@@ -8,7 +8,7 @@
     "duration": 100
    },
    "1": {
-    "frame": { "x": 35, "y": 2, "w": 35, "h": 59 },
+    "frame": { "x": 27, "y": 0, "w": 31, "h": 55 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 1, "y": 0, "w": 31, "h": 55 },
@@ -16,7 +16,7 @@
     "duration": 100
    },
    "2": {
-    "frame": { "x": 2, "y": 2, "w": 31, "h": 59 },
+    "frame": { "x": 0, "y": 0, "w": 27, "h": 55 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 4, "y": 0, "w": 27, "h": 55 },
@@ -24,7 +24,7 @@
     "duration": 100
    },
    "3": {
-    "frame": { "x": 72, "y": 2, "w": 36, "h": 59 },
+    "frame": { "x": 58, "y": 0, "w": 32, "h": 55 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 55 },
@@ -37,9 +37,11 @@
   "version": "1.2.29-x64",
   "image": "player-body.png",
   "format": "RGBA8888",
-  "size": { "w": 108, "h": 61 },
+  "size": { "w": 90, "h": 55 },
   "scale": "1",
   "frameTags": [
+   { "name": "player-run", "from": 0, "to": 3, "direction": "forward" },
+   { "name": "player-idle", "from": 0, "to": 0, "direction": "forward" }
   ],
   "layers": [
    { "name": "Layer 2", "opacity": 255, "blendMode": "normal" },
